@@ -1,0 +1,16 @@
+# Environnement virtuel
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Données locales et logs
+.env
+mlops_metadata_store.json
+
+# Fichiers système
+.DS_Store
+Thumbs.db

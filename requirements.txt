@@ -1,0 +1,15 @@
+streamlit
+tensorflow
+torch
+torchvision
+monai
+numpy
+pandas
+Pillow
+scikit-learn
+opencv-python
+matplotlib 
+plotly
+boto3
+psycopg2-binary
+tf-keras-vis
