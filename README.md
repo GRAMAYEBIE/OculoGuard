@@ -37,7 +37,7 @@ app/: Streamlit frontend and API logic.
 pipeline/: Kafka producer/consumer scripts and Database schemas.
 🔧 Installation & SetupClone the repo:
 Clone the repo
-git clone https://github.com/YourUsername/OculoGuard-v2.git
+git clone https://github.com/GRAMAYEBIE/OculoGuard-v2.git
 Install dependencies:
 
 Bash
