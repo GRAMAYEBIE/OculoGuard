@@ -142,26 +142,33 @@ if uploaded_file:
         # On crée un conteneur pour styliser comme sur ta capture
         with st.container():
             col_val, col_reco = st.columns(2)
-            
+
             with col_val:
-                # Récupère l'index de la prédiction IA pour pré-remplir
-                current_dr_idx = res.get('dr_idx', 0)
-                
-                val_dr = st.selectbox(
-                    "Validate DR Stage", 
-                    options=list(DR_STAGES.values()), 
-                    index=current_dr_idx,
-                    help="Le médecin peut corriger ici la prédiction de l'IA"
-                )
-                
-                current_glau = 0 if res.get('glaucoma_status') == "Negative" else 1
-                val_glau = st.radio(
-                    "Validate Glaucoma Status", 
-                    ["Negative", "Positive"], 
-                    index=current_glau,
-                    horizontal=True
-                )
-            
+                # Check if 'res' exists in the current scope before accessing it
+                if 'res' in locals() and res is not None:
+                    # Retrieve the AI prediction index to pre-fill the selection
+                    current_dr_idx = res.get('dr_idx', 0)
+                    
+                    val_dr = st.selectbox(
+                        "Validate DR Stage",
+                        options=list(DR_STAGES.values()),
+                        index=current_dr_idx,
+                        help="The physician can manually override the AI prediction here."
+                    )
+
+                    # Determine glaucoma status: 0 for Negative, 1 for Positive
+                    current_glau = 0 if res.get('glaucoma_status') == "Negative" else 1
+                    
+                    val_glau = st.radio(
+                        "Validate Glaucoma Status",
+                        ["Negative", "Positive"],
+                        index=current_glau,
+                        horizontal=True
+                    )
+                else:
+                    # Informative message displayed before the user runs the analysis
+                    st.info("💡 Clinical validation options will appear here once the image analysis is complete.")
+                    
             with col_reco:
                 reco_options = [
                     "Laser Photocoagulation", 
